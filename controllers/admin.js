@@ -63,17 +63,37 @@ async function getAllCourse(req, res) {
 
 async function updateCourse(req, res) {
     try {
-        
-    } catch (error) {
-        
+
+        let incomingNewCourseName = req.body.courseName;
+        let incomingNewCourseDuration = req.body.courseDuration;
+
+        let updatedCourse = await LogicpoolCourses.findByIdAndUpdate(
+            { _id : req.params.id },
+
+            {
+                courseName: incomingNewCourseName,
+                courseDuration: incomingNewCourseDuration
+            },
+
+            {new: true}
+        );
+
+        console.log(updatedCourse);
+        res.status(200).json({updatedCourse , status: true , message: 'Course Updated Successfully'})
+    } catch (err) {
+        console.log(err);
+        res.status(500).json({message: `${err.message}`});
     }
 }
 
 async function deleteCourse(req, res) {
     try {
-        
-    } catch (error) {
-        
+        await LogicpoolCourses.deleteOne({ _id : req.params.id});
+        console.log(`Course _id: ${req.params.id} is now deleted from the database`);
+        res.status(200).json({message: `Course _id: ${req.params.id} is now deleted from the database`});        
+    } catch (err) {
+        console.log(err);
+        res.status(500).json({message: `${err.message}`});
     }
 }
 

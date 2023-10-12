@@ -7,6 +7,8 @@ router.post('/addCourse' , adminController.addCourse);
 
 router.get('/getCourse' , adminController.getCourse);
 
+router.get('/getAllCourse' , adminController.getAllCourse);
+
 router.post('/addModule' , adminController.addModule);
 
 router.get('/getModule' , adminController.getModule);

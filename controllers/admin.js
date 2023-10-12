@@ -46,6 +46,21 @@ async function getCourse(req, res) {
     }
 }
 
+async function getAllCourse(req, res) {
+    try {
+
+        let allCourses = await LogicpoolCourses.find(); //This will find all available courses
+
+        if(allCourses.length > 0) return res.status(200).json({allCourses , status: "true"});
+        else return res.status(404).json({message: 'No Course Available' , status: "false"});
+
+    } catch (err) {
+        console.log(err);
+        res.status(500).json({message: `${err.message}`});
+        
+    }
+}
+
 async function updateCourse(req, res) {
     try {
         
@@ -185,6 +200,7 @@ module.exports = {
     //Courses
     addCourse,
     getCourse,
+    getAllCourse,
     updateCourse,
     deleteCourse,
     

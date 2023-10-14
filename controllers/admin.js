@@ -103,10 +103,13 @@ async function deleteCourse(req, res) {
 async function addModule(req, res) {
     try {
 
+        let incomingCourseName = req.body.courseName;
         let incomingModuleName = req.body.moduleName;
+        
              
         const newModule = new LogicpoolModules({
-            moduleName: incomingModuleName,
+            courseName: incomingCourseName,
+            moduleName: incomingModuleName
         });
 
         await newModule.save();

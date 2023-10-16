@@ -22,6 +22,10 @@ router.get('/getModule' , adminController.getModule);
 
 router.get('/getAllModule' , adminController.getAllModule);
 
+router.put('/updateModule/:id' , adminController.updateModule);
+
+router.delete('/deleteModule/:id' , adminController.deleteModule);
+
 
 ////End Points For Module Topics
 router.post('/addTopic' , adminController.addTopic);

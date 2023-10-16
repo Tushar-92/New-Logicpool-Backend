@@ -156,17 +156,38 @@ async function getAllModule(req, res) {
 
 async function updateModule(req, res) {
     try {
+
+        let incomingNewCourseName = req.body.courseName;
+        let incomingModuleName = req.body.moduleName;
         
-    } catch (error) {
-        
+
+        let updatedModule = await LogicpoolModules.findByIdAndUpdate(
+            { _id : req.params.id },
+
+            {
+                courseName: incomingNewCourseName,
+                moduleName: incomingModuleName
+            },
+
+            {new: true}
+        );
+
+        console.log(updatedModule);
+        res.status(200).json({updatedModule , status: true , message: 'Module Updated Successfully'})
+    } catch (err) {
+        console.log(err);
+        res.status(500).json({message: `${err.message}`});
     }
 }
 
 async function deleteModule(req , res) {
     try {
-        
-    } catch (error) {
-        
+        await LogicpoolModules.deleteOne({ _id : req.params.id});
+        console.log(`Module _id: ${req.params.id} is now deleted from the database`);
+        res.status(200).json({message: `Module _id: ${req.params.id} is now deleted from the database`});        
+    } catch (err) {
+        console.log(err);
+        res.status(500).json({message: `${err.message}`});
     }
 }
 

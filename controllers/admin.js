@@ -139,6 +139,21 @@ async function getModule(req, res) {
     }
 }
 
+async function getAllModule(req, res) {
+    try {
+
+        let allModule = await LogicpoolModules.find(); //This will find all available modules
+
+        if(allModule.length > 0) return res.status(200).json({allModule , status: "true"});
+        else return res.status(404).json({message: 'No Module Available' , status: "false"});
+
+    } catch (err) {
+        console.log(err);
+        res.status(500).json({message: `${err.message}`});
+        
+    }
+}
+
 async function updateModule(req, res) {
     try {
         
@@ -230,6 +245,7 @@ module.exports = {
     //Modules
     addModule,
     getModule,
+    getAllModule,
     updateModule,
     deleteModule,
 

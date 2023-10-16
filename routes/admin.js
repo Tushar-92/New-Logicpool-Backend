@@ -20,6 +20,8 @@ router.post('/addModule' , adminController.addModule);
 
 router.get('/getModule' , adminController.getModule);
 
+router.get('/getAllModule' , adminController.getAllModule);
+
 
 ////End Points For Module Topics
 router.post('/addTopic' , adminController.addTopic);
